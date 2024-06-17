@@ -1,6 +1,8 @@
 #ifndef __WRAP_H_
 #define __WRAP_H_
 
+#include <sys/socket.h>
+
 void perr_exit(const char *s);
 int Accept(int fd, struct sockaddr *sa, socklen_t *salenptr);
 int Bind(int fd, const struct sockaddr *sa, socklen_t salen);

@@ -108,7 +108,7 @@ ssize_t Readn(int fd, void *vptr, size_t n)
 	ssize_t nread;              //int 实际读到的字节数
 	char   *ptr;
 
-	ptr = vptr;
+	ptr = static_cast<char*>(ptr);
 	nleft = n;
 
 	while (nleft > 0) {
@@ -132,7 +132,7 @@ ssize_t Writen(int fd, const void *vptr, size_t n)
 	ssize_t nwritten;
 	const char *ptr;
 
-	ptr = vptr;
+	ptr = static_cast<const char*>(vptr);
 	nleft = n;
 	while (nleft > 0) {
 		if ( (nwritten = write(fd, ptr, nleft)) <= 0) {
@@ -175,7 +175,7 @@ ssize_t Readline(int fd, void *vptr, size_t maxlen)
 	ssize_t n, rc;
 	char    c, *ptr;
 
-	ptr = vptr;
+	ptr =static_cast<char*>(vptr);
 	for (n = 1; n < maxlen; n++) {
 		if ( (rc = my_read(fd, &c)) == 1) {
 			*ptr++ = c;
